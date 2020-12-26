@@ -22,6 +22,14 @@ app.post('/',function(req,res){
     res.render('form');
 })
 
+app.get('/showinfo',function(req,res){
+    connection.query('SELECT * FROM forminfo',function(err,data){
+        if(err) throw err;
+        console.log(data);
+        //res.render('showinfo'); 
+    })
+})
+
 app.listen(3000,(err) =>{
     if(err) throw err;
     else
