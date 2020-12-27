@@ -2,20 +2,29 @@
 <html>
     <head>
     <title>
-        Form
+        FormInfo
     </title>
     </head>
 
     <body style="background-color:royalblue;">
-        
-        <h2>Form</h2>
-        <form action="/" method="POST">
-            <label>Name</label>
-            <input type="text" id="name" name="name"><br>
-            <label>Age &nbsp;&nbsp;</label>
-            <input type="text" id="age" name="age"><br><br>
-            <input type="submit"> 
-        </form>
+    <table id="table" border="1px">  
+        <thead>  
+            <tr>  
+                <th>Id</th>
+                <th>Name</th>  
+                <th>Age</th>  
+            </tr>  
+        </thead>  
+         <tbody>  
+         <% data.forEach(function (user) { %>
+            <tr>
+                <td><%= user.id %></td>  
+                <td><%= user.name %></td>  
+                <td><%= user.age %></td>
+            </tr>                                   
+         <% }) %>
+         </tbody>
+    </table>   
          
 
     </body>
