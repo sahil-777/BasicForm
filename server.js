@@ -19,14 +19,14 @@ app.post('/',function(req,res){
         "age":req.body.age
     };
     connection.query('INSERT INTO forminfo SET ?',data);
-    res.render('form');
+    res.redirect('/showinfo');
 })
 
 app.get('/showinfo',function(req,res){
     connection.query('SELECT * FROM forminfo',function(err,data){
         if(err) throw err;
-        console.log(data);
-        //res.render('showinfo'); 
+        //console.log(data);
+        res.render('showInfo',{data:data}); 
     })
 })
 
