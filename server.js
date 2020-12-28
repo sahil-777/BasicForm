@@ -6,7 +6,14 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 const PORT =process.env.PORT || 3000 ;
 
-var connection = require('./config.js');
+//----------------------------
+const form = require('./controller/form.js');
+app.use('/', form);
+
+//var connection = require('./config.js');
+
+/*---------------------------------------------
+
 var createTable = require('./model/formInfo.js');
 app.get('/',function(req,res){
     createTable();
@@ -28,6 +35,9 @@ app.get('/showinfo',function(req,res){
         res.render('showInfo',{data:data}); 
     })
 })
+
+//---------------------------------------------
+*/
 
 app.listen(PORT,(err) =>{
     if(err) throw err;
