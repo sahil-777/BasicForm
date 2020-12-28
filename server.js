@@ -4,16 +4,16 @@ var app= express();
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
+const PORT =process.env.PORT || 3000 ;
 
 var connection = require('./config.js');
-
+var createTable = require('./model/formInfo.js');
 app.get('/',function(req,res){
+    createTable();
     res.render('form');
 })
 
 app.post('/',function(req,res){
-    console.log(req.body.name);
-    console.log(req.body.age);
     var data ={
         "name":req.body.name,
         "age":req.body.age
@@ -25,13 +25,11 @@ app.post('/',function(req,res){
 app.get('/showinfo',function(req,res){
     connection.query('SELECT * FROM forminfo',function(err,data){
         if(err) throw err;
-        //console.log(data);
         res.render('showInfo',{data:data}); 
     })
 })
 
-app.listen(3000,(err) =>{
+app.listen(PORT,(err) =>{
     if(err) throw err;
-    else
-    console.log('Server is running on localhost:3000');
+    console.log('Server is running on localhost:'+PORT);
 });
